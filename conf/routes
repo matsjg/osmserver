@@ -1,0 +1,66 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                   controllers.Application.index
+
+# OSM API v0.6
+GET     /api/0.6/capabilities               controllers.OSM.getCapabilities()
+
+GET     /api/0.6/permissions                controllers.OSM.getPermissions()
+
+GET     /api/0.6/map                        controllers.OSM.getMap(bbox: String)
+
+PUT     /api/0.6/changeset/create           controllers.OSM.createChangeSet()
+GET     /api/0.6/changeset/:id              controllers.OSM.getChangeet(id: Long)
+POST    /api/0.6/changeset/:id/upload       controllers.OSM.uploadChangeSet(id: Long)
+PUT     /api/0.6/changeset/:id              controllers.OSM.updateChangeet(id: Long)
+PUT     /api/0.6/changeset/:id/close        controllers.OSM.closeChangeSet(id: Long)
+GET     /api/0.6/changeset/:id/download     controllers.OSM.downloadChangeSet(id: Long)
+POST    /api/0.6/changeset/:id/expand_bbox  controllers.OSM.expandChangeSetBBOX(id: Long)
+GET     /api/0.6/changesets                 controllers.OSM.listChangeSetsInBBOX(bbox: String)
+GET     /api/0.6/changesets                 controllers.OSM.listChangeSetsForUser(user: String)
+GET     /api/0.6/changesets                 controllers.OSM.listChangeSets(time: String)
+GET     /api/0.6/changesets                 controllers.OSM.listChangeSetsOpened(open: String)
+GET     /api/0.6/changesets                 controllers.OSM.listChangeSetsClosed(closed: String)
+
+PUT     /api/0.6/node/create                controllers.OSM.createNode()
+PUT     /api/0.6/node/:id                   controllers.OSM.updateNode(id: Long)
+DELETE  /api/0.6/node/:id                   controllers.OSM.removeNode(id: Long)
+GET     /api/0.6/node/:id                   controllers.OSM.getNode(id: Long)
+GET     /api/0.6/node/:id/:version          controllers.OSM.getNodeVersion(id: Long, version: Long)
+GET     /api/0.6/node/:id/history           controllers.OSM.getNodeHistory(id: Long)
+GET     /api/0.6/node/:id/relations         controllers.OSM.getNodeRelations(id: Long)
+GET     /api/0.6/node/:id/ways              controllers.OSM.getNodeWays(id: Long)
+GET     /api/0.6/nodes                      controllers.OSM.getNodes(nodes: String)
+
+PUT     /api/0.6/way/create                 controllers.OSM.createWay()
+PUT     /api/0.6/way/:id                    controllers.OSM.updateWay(id: Long)
+DELETE  /api/0.6/way/:id                    controllers.OSM.removeWay(id: Long)
+GET     /api/0.6/way/:id                    controllers.OSM.getWay(id: Long)
+GET     /api/0.6/way/:id/:version           controllers.OSM.getWayVersion(id: Long, version: Long)
+GET     /api/0.6/way/:id/history            controllers.OSM.getWayHistory(id: Long)
+GET     /api/0.6/way/:id/relations          controllers.OSM.getWayRelations(id: Long)
+GET     /api/0.6/way/:id/full               controllers.OSM.getWayFull(id: Long)
+GET     /api/0.6/ways                       controllers.OSM.getWays(ways: String)
+
+PUT     /api/0.6/relation/create            controllers.OSM.createRelation()
+PUT     /api/0.6/relation/:id               controllers.OSM.updateRelation(id: Long)
+DELETE  /api/0.6/relation/:id               controllers.OSM.removeRelation(id: Long)
+GET     /api/0.6/relation/:id               controllers.OSM.getRelation(id: Long)
+GET     /api/0.6/relation/:id/:version      controllers.OSM.getRelationVersion(id: Long, version: Long)
+GET     /api/0.6/relation/:id/history       controllers.OSM.getRelationHistory(id: Long)
+GET     /api/0.6/relation/:id/relations     controllers.OSM.getRelationRelations(id: Long)
+GET     /api/0.6/relation/:id/full          controllers.OSM.getRelationFull(id: Long)
+GET     /api/0.6/relations                  controllers.OSM.getNodes(relations: String)
+
+GET     /api/0.6/trackpoints                controllers.OSM.getTrackPoints(bbox: String, page: Int)
+
+POST    /api/0.6/gpx/create                 controllers.OSM.createGPXFile()
+GET     /api/0.6/gpx/:id/details            controllers.OSM.getGPXFileDetails(id: Long)
+GET     /api/0.6/gpx/:id/data               controllers.OSM.getGPXFile(id: Long)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
